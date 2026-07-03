@@ -1,20 +1,23 @@
 PHOTOS
 ======
 
-Put photos used inside pages here, then reference them from a markdown file
-in /content/ like this:
+Put photos used inside pages here, then reference them from a page's HTML
+file with a normal <img> tag, e.g. inside <article class="content">:
 
-    ![Caption text shown under the image](assets/photos/my-photo.jpg)
+    <figure>
+      <img src="assets/photos/my-photo.jpg" alt="Caption text" />
+      <figcaption>Caption text</figcaption>
+    </figure>
 
-(Paths in markdown are relative to the site root — no "../" needed.)
-
-The alt text becomes the small grey caption below the image.
+(Paths are relative to the site root — no "../" needed.)
 
 Files the starter content already refers to (add these to make them appear):
-    portrait.jpg     -> homepage intro photo
-    tour-group.jpg   -> walking-tours page
-    tour-walk.jpg    -> walking-tours page
-    meme.jpg         -> about-me page
-    placeholder.jpg  -> example image on university-courses page
+    portrait.jpg     -> homepage intro photo (index.html)
+    tour-group.jpg   -> walking-tours.html
+    tour-walk.jpg    -> walking-tours.html
+    meme.jpg         -> about-me.html
+    placeholder.jpg  -> example image on university-courses.html
 
-Missing images fall back to a neutral placeholder automatically.
+Until a photo exists, the homepage portrait shows a neutral grey box; an
+<img> in a page body will show the browser's broken-image icon until you
+add the file (or remove the <img>).

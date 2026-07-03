@@ -1,0 +1,30 @@
+---
+description: Nav/sidebar/footer are duplicated per HTML page and must be kept in sync
+alwaysApply: true
+---
+
+# Keep navigation in sync across every page
+
+This is a static HTML/CSS site with **no build step and no shared-include mechanism**.
+The nav/sidebar (list of pages), the hamburger menu, and the footer are physically
+**copied into every HTML page**. There is no single source of truth to edit.
+
+## The invariant
+
+Whenever the set of pages changes, the navigation in **every** HTML page must be updated
+to match. Treat the nav/sidebar markup as one logical block that happens to be duplicated.
+
+## Triggers — when this applies
+
+- **Adding a page** → add its link to the nav/sidebar in *every other* page (and the new page).
+- **Removing a page** → delete its link from the nav/sidebar in *every* page.
+- **Renaming a page** (title or URL/slug) → update the link text and/or `href` in *every* page.
+- **Reordering nav items** → apply the same order in *every* page.
+
+## How to do it correctly
+
+1. Enumerate all HTML pages (e.g. `**/*.html`) so none are missed.
+2. Apply the identical nav/sidebar/footer change to each one.
+3. After editing, grep for the added/removed/renamed link text and `href` across all
+   pages to confirm every page has the exact same nav block.
+4. Don't hand-wave "and the others" — actually edit each file.

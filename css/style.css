@@ -125,9 +125,10 @@ img { max-width: 100%; height: auto; display: block; }
 .intro .portrait {
   width: 244px;
   height: 244px;
-  object-fit: cover;
   border-radius: 2px;
-  background: #dfe4ec;
+  background-color: #dfe4ec;
+  background-size: cover;
+  background-position: center;
 }
 
 /* ---- Homepage tile grid -------------------------------------------------*/
@@ -142,11 +143,13 @@ img { max-width: 100%; height: auto; display: block; }
 .tile:hover { text-decoration: none; }
 .tile:hover .tile-caption { text-decoration: underline; }
 .tile-img {
+  display: block;
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
   border-radius: 3px;
-  background: #dfe4ec;
+  background-color: #dfe4ec;
+  background-size: cover;
+  background-position: center;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -202,8 +205,21 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .content img { margin: 2em auto; border-radius: 2px; }
 
-/* ---- Hamburger button ---------------------------------------------------*/
+/* ---- Hamburger button (pure-CSS toggle, no JS) --------------------------*/
+/* A visually-hidden checkbox holds the open/closed state; the hamburger and
+   overlay are <label>s that flip it. No JavaScript involved. */
+.nav-checkbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 .menu-toggle {
+  display: block;
   position: fixed;
   top: 22px;
   left: 22px;
@@ -223,10 +239,10 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--ink);
   transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s ease;
 }
-.menu-toggle.is-open span { background: var(--sidebar-ink); }
-.menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-.menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-checkbox:checked ~ .menu-toggle span { background: var(--sidebar-ink); }
+.nav-checkbox:checked ~ .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-checkbox:checked ~ .menu-toggle span:nth-child(2) { opacity: 0; }
+.nav-checkbox:checked ~ .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---- Slide-in sidebar ---------------------------------------------------*/
 .sidebar {
@@ -266,8 +282,8 @@ img { max-width: 100%; height: auto; display: block; }
   visibility: hidden;
   transition: opacity 0.28s ease, visibility 0.28s ease;
 }
-body.sidebar-open .sidebar { transform: translateX(0); }
-body.sidebar-open .sidebar-overlay { opacity: 1; visibility: visible; }
+.nav-checkbox:checked ~ .sidebar { transform: translateX(0); }
+.nav-checkbox:checked ~ .sidebar-overlay { opacity: 1; visibility: visible; }
 
 /* ---- Loading / error state for markdown pages ---------------------------*/
 .content .status { text-align: center; color: var(--muted); padding: 2em 0; }
