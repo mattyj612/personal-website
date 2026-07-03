@@ -1,0 +1,289 @@
+/* ============================================================================
+ *  Matthew Jordan — personal site styles
+ *  Typeface: Williams Caslon Text (falls back to Libre Caslon Text).
+ *  To use your real Williams Caslon files, drop them in assets/fonts/ and see
+ *  the @font-face block at the top of this file.
+ * ==========================================================================*/
+
+/* ---- Fonts ---------------------------------------------------------------
+ * Libre Caslon Text (free, from Google Fonts) is loaded in the HTML <head>
+ * as an immediate stand-in. When you have the real Williams Caslon Text
+ * files, uncomment the @font-face rules below and put the files in
+ * assets/fonts/. The rest of the CSS already asks for "Williams Caslon Text"
+ * first, so it will switch over automatically.
+ */
+/*
+@font-face {
+  font-family: "Williams Caslon Text";
+  src: url("../assets/fonts/WilliamsCaslonText-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Williams Caslon Text";
+  src: url("../assets/fonts/WilliamsCaslonText-Italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Williams Caslon Text";
+  src: url("../assets/fonts/WilliamsCaslonText-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Williams Caslon Text";
+  src: url("../assets/fonts/WilliamsCaslonText-BoldItalic.woff2") format("woff2");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+*/
+
+:root {
+  --bg: #f5faff;
+  --ink: #000000;
+  --ink-soft: #4a4f57;
+  --muted: #9aa1ab;
+  --rule: #d6dce4;
+  --link: #7f92cf;
+  --link-hover: #5f74bd;
+  --sidebar-bg: #111214;
+  --sidebar-ink: #f2f2f2;
+  --sidebar-dim: #6b6f76;
+  --content-width: 680px;
+  --font: "Williams Caslon Text", "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 19px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ---- Layout shell -------------------------------------------------------*/
+.page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 54px 24px 96px;
+}
+.page.wide { max-width: 860px; }
+
+/* Homepage: the title rule + intro (text columns and portrait) span a wider
+   band than the tile grid below, which stays narrower and centered — matching
+   the original site's proportions. */
+.page--home { max-width: 900px; }
+.page--home .title-rule { max-width: 100%; }
+.page--home .intro { max-width: 100%; }
+
+/* ---- Big centered site / page title -------------------------------------*/
+.site-title,
+.page-title {
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.4em;
+  line-height: 1.1;
+}
+.site-title { font-size: clamp(2.4rem, 5vw, 3.05rem); }
+.page-title { font-size: clamp(2.5rem, 5.5vw, 3.15rem); margin-bottom: 0.95em; }
+
+.title-rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  max-width: var(--content-width);
+  margin: 0.6em auto 0;
+}
+
+/* ---- Homepage intro (text | photo | text) -------------------------------*/
+.intro {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  max-width: 680px;
+  margin: 46px auto 0;
+}
+.intro p {
+  margin: 0 auto;
+  max-width: 278px;
+  color: var(--ink);
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+.intro .portrait {
+  width: 244px;
+  height: 244px;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #dfe4ec;
+}
+
+/* ---- Homepage tile grid -------------------------------------------------*/
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 46px 34px;
+  max-width: 740px;
+  margin: 64px auto 0;
+}
+.tile { text-align: center; color: var(--ink); }
+.tile:hover { text-decoration: none; }
+.tile:hover .tile-caption { text-decoration: underline; }
+.tile-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #dfe4ec;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tile:hover .tile-img {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+.tile-caption {
+  display: block;
+  margin-top: 11px;
+  font-size: 1.05rem;
+  line-height: 1.24;
+  color: var(--ink);
+}
+
+/* ---- Social row ---------------------------------------------------------*/
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 84px;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-link svg { width: 48px; height: 48px; fill: #000; }
+
+/* ---- Article body (markdown pages) --------------------------------------*/
+.content { font-size: 1.12rem; }
+.content p { margin: 0 0 1.25em; }
+.content h2 { font-weight: 400; font-size: 1.6rem; margin: 1.6em 0 0.5em; }
+.content h3 { font-weight: 700; font-size: 1.25rem; margin: 1.4em 0 0.4em; }
+.content ul, .content ol { margin: 0 0 1.25em; padding-left: 1.3em; }
+.content li { margin: 0.3em 0; }
+.content blockquote {
+  margin: 1.25em 0;
+  padding: 0.2em 0 0.2em 1.1em;
+  border-left: 3px solid var(--rule);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.content hr { border: 0; border-top: 1px solid var(--rule); margin: 2em 0; }
+.content figure { margin: 2em 0; }
+.content figure img { margin: 0 auto; border-radius: 2px; }
+.content figcaption {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.7em;
+}
+.content img { margin: 2em auto; border-radius: 2px; }
+
+/* ---- Hamburger button ---------------------------------------------------*/
+.menu-toggle {
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  z-index: 60;
+  width: 34px;
+  height: 30px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  width: 26px;
+  margin: 5px 0;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.2s ease, background 0.2s ease;
+}
+.menu-toggle.is-open span { background: var(--sidebar-ink); }
+.menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+.menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---- Slide-in sidebar ---------------------------------------------------*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 55;
+  height: 100vh;
+  width: 300px;
+  max-width: 82vw;
+  background: var(--sidebar-bg);
+  padding: 74px 26px 26px;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  font-family: var(--sans);
+}
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li { margin: 0; }
+.sidebar a {
+  display: block;
+  padding: 1px 4px;
+  color: var(--sidebar-ink);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+.sidebar a:hover { color: #fff; text-decoration: none; }
+.sidebar a.active { color: var(--sidebar-dim); }
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+body.sidebar-open .sidebar { transform: translateX(0); }
+body.sidebar-open .sidebar-overlay { opacity: 1; visibility: visible; }
+
+/* ---- Loading / error state for markdown pages ---------------------------*/
+.content .status { text-align: center; color: var(--muted); padding: 2em 0; }
+
+/* ---- Responsive ---------------------------------------------------------*/
+@media (max-width: 720px) {
+  .tiles { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 620px) {
+  body { font-size: 18px; }
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 340px;
+  }
+  .intro .portrait { margin: 0 auto; }
+  .tiles { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+  .page { padding: 56px 20px 80px; }
+}
