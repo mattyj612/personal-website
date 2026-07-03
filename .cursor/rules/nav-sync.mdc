@@ -21,10 +21,17 @@ to match. Treat the nav/sidebar markup as one logical block that happens to be d
 - **Renaming a page** (title or URL/slug) → update the link text and/or `href` in *every* page.
 - **Reordering nav items** → apply the same order in *every* page.
 
+## Link format (extensionless)
+
+Internal links are **relative and extensionless** so they work on GitHub Pages
+(which resolves `/biking` to `biking.html`) on both a custom domain and a project
+path. Use `href="biking"`, not `href="biking.html"`. The Home link is `href="./"`.
+
 ## How to do it correctly
 
 1. Enumerate all HTML pages (e.g. `**/*.html`) so none are missed.
 2. Apply the identical nav/sidebar/footer change to each one.
 3. After editing, grep for the added/removed/renamed link text and `href` across all
-   pages to confirm every page has the exact same nav block.
+   pages to confirm every page has the exact same nav block. Also confirm no
+   `.html"` sneaks back into an internal `href`.
 4. Don't hand-wave "and the others" — actually edit each file.
